@@ -4,11 +4,11 @@
 #include "../headers/Builder.h"
 
 Tower Builder::smallTower(SDL_Renderer *rend, Position position) {
-    Tower tower = Tower(rend, position.x(), position.y(), SMALL_TOWER_RANGE, "../images/tower.png", bullets::arrow);
+    Tower tower = Tower(rend, position.x(), position.y(), SMALL_TOWER_RANGE, "../images/tower.png", bullets::arrow, SMALL_TOWER_COST);
     return tower;
 }
 
 Tower Builder::bigTower(SDL_Renderer *rend, Position position) {
-    Tower tower = Tower(rend, position.x(), position.y(), BIG_TOWER_RANGE, "../images/tower2.png", bullets::ball);
+    Tower tower = Tower(rend, position.x(), position.y(), BIG_TOWER_RANGE, "../images/tower2.png", bullets::ball, BIG_TOWER_COST);
     return tower;
 }

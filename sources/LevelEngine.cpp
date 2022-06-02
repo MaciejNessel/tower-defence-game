@@ -54,7 +54,7 @@ void LevelEngine::start() {
         }
         this->engineStep();
 
-        if(waveEngine.waveStep(map) == gameStatus::defeat){
+        if(waveEngine.waveStep(map, &coins) == gameStatus::defeat){
             gameStatus_ = gameStatus::defeat;
             defeatScreen();
         }
@@ -73,18 +73,36 @@ void LevelEngine::start() {
     gameStatus_ = gameStatus::win;
 }
 
+bool LevelEngine::isOccupied(Position position){
+    for(int i=0; i<towerList.size(); i++){
+        if(towerList.at(i).getPosition().equal(position)){
+            return true;
+        }
+    }
+    return false;
+}
+
 void LevelEngine::addTower(Position position, enum towers type) {
+    if(isOccupied(position)){return;}
+
     Tower *tower = (Tower*) calloc(sizeof (Tower), 1);
+
     switch (type) {
         case towers::small: *tower = Builder::smallTower(rend, position); break;
         case towers::big: *tower = Builder::bigTower(rend, position); break;
         default: return;
     }
     SDL_QueryTexture(tower->tex, NULL, NULL, &tower->getDest()->w, &tower->getDest()->h);
+    if(tower->getCost()>coins){
+        return;
+    }
+    coins -= tower->getCost();
     towerList.push_back(*tower);
 }
 
 void LevelEngine::engineStep() {
+    coinLabel.updateCount(coins);
+    coinLabel.render();
     SDL_Event ev;
 
     for(auto & tower : towerList){

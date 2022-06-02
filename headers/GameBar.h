@@ -11,6 +11,7 @@
 #include <vector>
 #include <SDL.h>
 #include <iostream>
+#include "CoinLabel.h"
 
 class GameBar{
 private:

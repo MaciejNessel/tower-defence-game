@@ -15,6 +15,8 @@
 #include "Common.h"
 #include "GameBarObject.h"
 #include "SDL_Circle.h"
+#include <typeinfo>
+
 
 class Map{
 private:
@@ -78,5 +80,6 @@ public:
 
     Position generateTowerPosition(Position mousePosition);
 
+    bool isOccupied(Position position);
 };
 #endif //TOWER_DEFENCE_GAME_MAP_H

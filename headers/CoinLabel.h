@@ -43,10 +43,14 @@ public:
         std::string a;
         ss >> a;
 
-        MapObject count = MapObject(25, 0, rend, TTF_RenderText_Solid(Arial, a.c_str(), White));
+        MapObject count = MapObject(x+25, y+0, rend, TTF_RenderText_Solid(Arial, a.c_str(), White));
         SDL_QueryTexture(count.tex, NULL, NULL, &count.getDest()->w, &count.getDest()->h);
 
         count.render();
+    }
+
+    void updateCount(int num){
+        countNum = num;
     }
 
 };

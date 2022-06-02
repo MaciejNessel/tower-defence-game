@@ -154,3 +154,12 @@ Directions Map::nextEnemyStep(Position position) {
 Position Map::generateTowerPosition(Position mousePosition) {
     return generateCenterPosition(mousePosition);
 }
+
+bool Map::isOccupied(Position position) {
+    for(int i=0; i<mapBackground.size();i++){
+        if(mapBackground.at(i).getPosition().equal(position) && mapBackground.at(i).isRoad()){
+            return true;
+        }
+    }
+    return false;
+}

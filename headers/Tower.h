@@ -10,6 +10,7 @@
 #include <SDL.h>
 #include "Common.h"
 #include "Bullet.h"
+#include "CoinLabel.h"
 #include <iostream>
 
 class Tower: public MapObject{
@@ -19,14 +20,16 @@ protected:
     enum bullets towerBulletType;
     int respawnTime = RESPAWN_BALL_TOWER;
     int respawnCnt = 1;
-
+    int cost = 0;
 public:
 
-    Tower(SDL_Renderer* rend, int x, int y, int range, char* img_src, enum bullets bullet)
+    Tower(SDL_Renderer* rend, int x, int y, int range, char* img_src, enum bullets bullet, int cost)
             :MapObject(x, y, rend, IMG_Load(img_src))
             ,position(Position(x,y))
             ,range(range)
-            ,towerBulletType(bullet){
+            ,towerBulletType(bullet)
+            ,cost(cost){
+
     }
 
     ~Tower() = default;
@@ -49,6 +52,10 @@ public:
             respawnCnt=0;
         }
         return res;
+    }
+
+    int getCost(){
+        return cost;
     }
 
 };

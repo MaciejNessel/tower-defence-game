@@ -62,7 +62,7 @@ Directions WaveEngine::findNextStep(Enemy enemy, Map map) {
     return dir;
 }
 
-enum gameStatus WaveEngine::waveStep(Map map) {
+enum gameStatus WaveEngine::waveStep(Map map, int* coins) {
 
     timer++;
     if(noEnemies>0 && timer % 100 == 0){
@@ -73,6 +73,7 @@ enum gameStatus WaveEngine::waveStep(Map map) {
         enemyList[i].rendBullets();
         Position position = enemyList[i].getCenterPosition();
         if(enemyList[i].hp<=0){
+            *coins += ENEMY_FIRST_HP / 5;
             enemyList.erase(enemyList.begin()+i);
             continue;
         }
@@ -86,7 +87,7 @@ enum gameStatus WaveEngine::waveStep(Map map) {
     }
 }
 
-void WaveEngine::enemyStep(Position towerPosition, Tower tower) {
+int WaveEngine::enemyStep(Position towerPosition, Tower tower) {
     for(int i=0; i<enemyList.size(); i++){
         Position enemyPosition = enemyList[i].getPosition();
         bool shoot = enemyPosition.isTargetCircle(towerPosition, tower.getRange());
@@ -94,9 +95,9 @@ void WaveEngine::enemyStep(Position towerPosition, Tower tower) {
             enum bullets bulletType = tower.getBulletType();
             enemyList[i].addBullet(Position(towerPosition.x()+tower.getDest()->w*0.25, towerPosition.y()), bulletType);
             enemyList[i].dealVirtualDamage(tower.getForceAndShoot());
-            break;
         }
     }
+    return 0;
 }
 
 void WaveEngine::addEnemyFromWave() {

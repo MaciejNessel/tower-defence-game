@@ -45,13 +45,13 @@ public:
 
     void getWave();
 
-    void addEnemy(Position position);;
+    void addEnemy(Position position);
 
-    Directions findNextStep(Enemy enemy, Map map);;
+    Directions findNextStep(Enemy enemy, Map map);
 
-    enum gameStatus waveStep(Map map);;
+    enum gameStatus waveStep(Map map, int* coins);
 
-    void enemyStep(Position towerPosition, Tower tower);
+    int enemyStep(Position towerPosition, Tower tower);
 
     void addEnemyFromWave();;
 

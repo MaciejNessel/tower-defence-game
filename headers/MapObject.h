@@ -13,7 +13,7 @@ class MapObject{
 protected:
     Position position;
     SDL_Rect dest{};
-
+    bool isRoad_ = false;
 private:
     void updateDest(){
         this->dest.x = position.x();
@@ -54,6 +54,12 @@ public:
         return &dest;
     }
 
+    void setRoad(){
+        isRoad_ = true;
+    }
+    bool isRoad(){
+        return isRoad_;
+    }
 };
 
 #endif //TOWER_DEFENCE_GAME_MAPOBJECT_H

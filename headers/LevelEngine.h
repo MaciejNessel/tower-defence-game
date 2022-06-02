@@ -33,6 +33,8 @@ private:
     enum gameStatus gameStatus_ = gameStatus::waiting;
     GameBar gameBar;
     WaveEngine waveEngine;
+    CoinLabel coinLabel;
+    int coins = 100;
 
 public:
     LevelEngine(SDL_Renderer* rend, char* levelName)
@@ -40,6 +42,7 @@ public:
     ,rend(rend)
     ,gameBar(GameBar(rend))
     ,waveEngine(WaveEngine(rend, levelName, map.getStart()))
+    ,coinLabel(CoinLabel(0, 0, 0, rend))
     {
     }
 
@@ -63,6 +66,8 @@ public:
     void click(SDL_Event event);
 
     void clickLeftBar(SDL_Event event, Position position);
+
+    bool isOccupied(Position position);
 };
 
 #endif //TOWER_DEFENCE_GAME_LEVELENGINE_H

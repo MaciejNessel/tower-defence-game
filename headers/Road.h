@@ -14,7 +14,7 @@ class Road : public MapObject{
 public:
     Road(SDL_Renderer* rend, int x, int y)
             :MapObject(x, y, rend, IMG_Load("../images/road.png")){
-
+        setRoad();
     }
 
     ~Road() = default;
