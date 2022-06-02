@@ -54,10 +54,10 @@ void Map::loadLevel() {
 
             switch (cnt) {
                 case 0:
-                    start = Position(std::stoi(words.at(0)) * NO_BACKGROUND_SIZE, std::stoi(words.at(1))* NO_BACKGROUND_SIZE);
+                    start = Position(std::stoi(words.at(0)), std::stoi(words.at(1)));
                     break;
                 case 1:
-                    end = Position(std::stoi(words.at(0))* NO_BACKGROUND_SIZE, std::stoi(words.at(1))* NO_BACKGROUND_SIZE);
+                    end = Position(std::stoi(words.at(0)), std::stoi(words.at(1)));
                     break;
                 default:
                     loadLevelMap(words, cnt - 2);
@@ -119,11 +119,11 @@ void Map::mapRender(Position selectedPosition, GameBarObject* selectedTower) {
 }
 
 Position Map::getStart() {
-    return this->start;
+    return {this->start.x()*NO_BACKGROUND_SIZE, this->start.y()*NO_BACKGROUND_SIZE};
 }
 
 Position Map::getEnd() {
-    return this->end;
+    return {this->end.x()*NO_BACKGROUND_SIZE, this->end.y()*NO_BACKGROUND_SIZE};
 }
 
 int **Map::getMap() const {

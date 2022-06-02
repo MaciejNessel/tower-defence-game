@@ -37,7 +37,7 @@ enum towers{
 };
 
 enum gameStatus{
-    win, defeat, waiting, wave
+    win, defeat, waiting, wave, menu
 };
 
 #endif //TOWER_DEFENCE_GAME_COMMON_H

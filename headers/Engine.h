@@ -23,8 +23,7 @@ class Engine{
 private:
     bool isRunning;
     SDL_Renderer* rend;
-
-    LevelEngine *levelEngine = (LevelEngine*) calloc(sizeof (LevelEngine), 1);
+    LevelEngine *levelEngine = (LevelEngine*) calloc(sizeof (LevelEngine), 10);
 
 public:
     Engine(SDL_Renderer* rend)

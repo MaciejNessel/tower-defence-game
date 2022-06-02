@@ -20,18 +20,29 @@ void GameBar::addTower(int x, int y, SDL_Surface *surface, enum towers type) {
     barObjects.push_back(toAdd);
 }
 
-void GameBar::render() {
+bool GameBar::render() {
     for(int i=0; i<barObjects.size(); i++){
         barObjects[i].render();
     }
+    backButton.render();
+    return back;
 }
 
 GameBarObject *GameBar::clickLeftBar(SDL_Event event, Position clickPosition) {
+    Position objectStartPosition = backButton.getPosition();
+    Position objectEndPosition = Position(objectStartPosition.x() + backButton.getDest()->w,
+                                          objectStartPosition.y()+backButton.getDest()->h);
+    if(clickPosition.isTargetRectangle(objectStartPosition, objectEndPosition)){
+        back = true;
+    }
+
+
     if(clickPosition.isTargetRectangle(Position(0,0), Position(MAP_WIDTH, MAP_HEIGHT))){
         GameBarObject* result = selected;
         selected = nullptr;
         return result;
     }
+
     for(int i=0; i<barObjects.size(); i++){
         Position objectStartPosition = barObjects[i].getPosition();
         Position objectEndPosition = Position(objectStartPosition.x() + barObjects[i].getDest()->w,
@@ -43,6 +54,7 @@ GameBarObject *GameBar::clickLeftBar(SDL_Event event, Position clickPosition) {
             selected = &barObjects[i];
         }
     }
+
     return nullptr;
 }
 

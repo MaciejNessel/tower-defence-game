@@ -8,14 +8,8 @@
 
 class Builder{
 public:
-    static Tower smallTower(SDL_Renderer* rend, Position position){
-        Tower tower = Tower(rend, position.x(), position.y(), SMALL_TOWER_RANGE, "../images/tower.png", bullets::arrow);
-        return tower;
-    }
-    static Tower bigTower(SDL_Renderer* rend, Position position){
-        Tower tower = Tower(rend, position.x(), position.y(), BIG_TOWER_RANGE, "../images/tower2.png", bullets::ball);
-        return tower;
-    }
+    static Tower smallTower(SDL_Renderer* rend, Position position);
+    static Tower bigTower(SDL_Renderer* rend, Position position);
 };
 
 #endif //TOWER_DEFENCE_GAME_BUILDER_H

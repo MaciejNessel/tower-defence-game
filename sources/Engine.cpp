@@ -6,35 +6,38 @@
 
 
 void Engine::start() {
-
-    isRunning = true;
     MenuScreen ms = MenuScreen(rend);
-    while (isRunning){
+    isRunning = true;
+
+    while (true){
+        ms.step();
+
         SDL_RenderClear(rend);
         ms.render();
-        ms.step();
 
         SDL_RenderPresent(rend);
 
-        SDL_Delay(1000 / 60);
+        SDL_Delay(1000 / 10);
 
-        if(ms.getLevel()){
+        if(ms.isSelected()){
             break;
         }
     }
 
     *levelEngine = LevelEngine(rend, ms.getLevel());
     levelEngine->start();
-
+    ms.clearChoice();
     while (isRunning){
+
         enum gameStatus gs = levelEngine->getStatus();
         if(gs == gameStatus::defeat){
             isRunning = false;
-            std::cout<<"Przegrana";
         }
         if(gs == gameStatus::win){
             isRunning = false;
-            std::cout<<"Wygrana";
+        }
+        if(gs== gameStatus::menu){
+            start();
         }
     }
 }
