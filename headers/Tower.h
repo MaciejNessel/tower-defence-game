@@ -10,7 +10,7 @@
 #include <SDL.h>
 #include "Common.h"
 #include "Bullet.h"
-
+#include <iostream>
 
 class Tower: public MapObject{
 protected:
@@ -18,10 +18,10 @@ protected:
     Position position;
     enum bullets towerBulletType;
     int respawnTime = RESPAWN_BALL_TOWER;
-    int currentStatus = 0;
+    int respawnCnt = 1;
 
 public:
-    int canShoot = true;
+
     Tower(SDL_Renderer* rend, int x, int y, int range, char* img_src, enum bullets bullet)
             :MapObject(x, y, rend, IMG_Load(img_src))
             ,position(Position(x,y))
@@ -41,6 +41,14 @@ public:
 
     enum bullets getBulletType(){
         return towerBulletType;
+    }
+
+    bool canShoot(){
+        bool res = respawnCnt % RESPAWN_BALL_TOWER == 0;
+        if(res){
+            respawnCnt=0;
+        }
+        return res;
     }
 
 };

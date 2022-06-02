@@ -1,0 +1,26 @@
+10 9 x
+1 1 x
+G G G G G G G G G G G G G G G G G G G G G G G G
+G S W W W W W W W W W W W G G G G G G G G G G G
+G S G G G G G G G G G G N G G G G G G G G G G G
+G G G G G G G G G G G G N G G G G G G G G G G G
+G G G G G E E E E E E E N G G G G G G G G G G G
+G G G G G N G G G G G G G G G G G G G G G G G G
+G G G G G N G G G G G G G G G G G G G G G G G G
+G G G G G N G G G G E E E E S G G G G G G G G G
+G G G G G N G G G G N G G G S G G G G G G G G G
+G G G G G N G G G G N G G G S G G G G G G G G G
+G G G G G N G G G G G G G G S G G G G G G G G G
+G G G G G N G G G G G G G G S G G G G G G G G G
+G G G G G N W W W W W W W W W G G G G G G G G G
+G G G G G G G G G G G G G G G G G G G G G G G G
+G G G G G G G G G G G G G G G G G G G G G G G G
+G G G G G G G G G G G G G G G G G G G G G G G G
+G G G G G G G G G G G G G G G G G G G G G G G G
+G G G G G G G G G G G G G G G G G G G G G G G G
+G G G G G G G G G G G G G G G G G G G G G G G G
+G G G G G G G G G G G G G G G G G G G G G G G G
+G G G G G G G G G G G G G G G G G G G G G G G G
+G G G G G G G G G G G G G G G G G G G G G G G G
+G G G G G G G G G G G G G G G G G G G G G G G G
+G G G G G G G G G G G G G G G G G G G G G G G G

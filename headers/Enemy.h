@@ -27,7 +27,7 @@ public:
         return hp>0;
     }
     bool dealDamage(int force);
-    ~Enemy() = default;
+//    ~Enemy() = default;
     void dealVirtualDamage(int force) {
         virtualHp -= force;
     }

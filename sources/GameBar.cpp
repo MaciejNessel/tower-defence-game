@@ -23,7 +23,6 @@ void GameBar::addTower(int x, int y, SDL_Surface *surface, enum towers type) {
 void GameBar::render() {
     for(int i=0; i<barObjects.size(); i++){
         barObjects[i].render();
-
     }
 }
 

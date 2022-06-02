@@ -24,14 +24,16 @@ private:
     SDL_Renderer* rend;
     Position start = Position(0, 0);
     Position end = Position(0, 0);
+    char* lvl_name;
 public:
     int **map;
     std::string **mapDirections;
 
-    Map(SDL_Renderer* rend)
+    Map(SDL_Renderer* rend, char* lvl_name)
     :rend(rend)
     ,height(NO_BACKGROUND_SIZE)
-    ,width(NO_BACKGROUND_SIZE){
+    ,width(NO_BACKGROUND_SIZE)
+    ,lvl_name(lvl_name){
 
         map = new int* [height];
         mapDirections = new std::string*[height];

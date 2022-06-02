@@ -43,7 +43,7 @@ void Map::loadLevelMap(std::vector<std::string> line, int j) {
 }
 
 void Map::loadLevel() {
-    std::ifstream myfile ("../resources/lvl0.txt");
+    std::ifstream myfile (lvl_name);
     std::string line;
     if (myfile.is_open())
     {
@@ -54,10 +54,10 @@ void Map::loadLevel() {
 
             switch (cnt) {
                 case 0:
-                    start = Position(std::stoi(words.at(0)), std::stoi(words.at(1)));
+                    start = Position(std::stoi(words.at(0)) * NO_BACKGROUND_SIZE, std::stoi(words.at(1))* NO_BACKGROUND_SIZE);
                     break;
                 case 1:
-                    end = Position(std::stoi(words.at(0)), std::stoi(words.at(1)));
+                    end = Position(std::stoi(words.at(0))* NO_BACKGROUND_SIZE, std::stoi(words.at(1))* NO_BACKGROUND_SIZE);
                     break;
                 default:
                     loadLevelMap(words, cnt - 2);
@@ -87,7 +87,7 @@ Position Map::generateCenterPosition(Position position) {
 }
 
 void Map::renderSelectedTowerOnMap(Position selectedPosition, GameBarObject* selectedTower) {
-    if(selectedPosition<start || Position(height*BLOCK_BACKGROUND_SIZE, width*BLOCK_BACKGROUND_SIZE)<selectedPosition){
+    if(selectedPosition<Position(0,0) || Position(height*BLOCK_BACKGROUND_SIZE, width*BLOCK_BACKGROUND_SIZE)<selectedPosition){
         return;
     }
     int range = 0;

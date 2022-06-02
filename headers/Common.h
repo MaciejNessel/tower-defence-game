@@ -36,4 +36,8 @@ enum towers{
     small, big
 };
 
+enum gameStatus{
+    win, defeat, waiting, wave
+};
+
 #endif //TOWER_DEFENCE_GAME_COMMON_H

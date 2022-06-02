@@ -14,49 +14,26 @@
 #include "Tower.h"
 #include "Map.h"
 #include "Bullet.h"
-#include "GameBar.h"
+#include "LevelEngine.h"
+#include "MenuScreen.h"
 #include "Builder.h"
-#include <thread>
+
 
 class Engine{
 private:
     bool isRunning;
     SDL_Renderer* rend;
-    std::vector<Enemy> enemyList;
-    std::vector<Tower> towerList;
 
-    int NumberOfEnemies, NumberOfTowers;
-    Map map;
-    GameBar gameBar;
-
-    int noEnemies = 0;
+    LevelEngine *levelEngine = (LevelEngine*) calloc(sizeof (LevelEngine), 1);
 
 public:
     Engine(SDL_Renderer* rend)
     :isRunning(false)
-    ,rend(rend)
-    ,NumberOfEnemies(0)
-    ,NumberOfTowers(0)
-    ,map(Map(rend))
-    ,gameBar(rend){
-
+    ,rend(rend){
     }
 
     void start();
 
-    void addEnemy(Position position);
-
-    void addTower(Position position, enum towers type);
-
-    void engineStep();
-
-    Directions findNextStep(Enemy enemy);
-
-    void waveStep();
-
-    void generateWave();
-
-    void addEnemyFromWave();
 };
 
 #endif //TOWER_DEFENCE_GAME_ENGINE_H
