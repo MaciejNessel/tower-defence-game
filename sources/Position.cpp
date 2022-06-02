@@ -20,3 +20,10 @@ void Position::move(Directions dir) {
         case Directions::NW: posX--; posY--; break;
     }
 }
+bool Position::operator<(const Position &rightPos) {
+    return this->x()<rightPos.posX || this->y()<rightPos.posY;
+}
+
+bool Position::operator>(const Position &rightPos) {
+    return this->posX>rightPos.posX || this->posY>rightPos.posY;
+}

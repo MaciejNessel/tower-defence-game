@@ -15,6 +15,8 @@
 #include "Map.h"
 #include "Bullet.h"
 #include "GameBar.h"
+#include "Builder.h"
+#include <thread>
 
 class Engine{
 private:
@@ -26,6 +28,9 @@ private:
     int NumberOfEnemies, NumberOfTowers;
     Map map;
     GameBar gameBar;
+
+    int noEnemies = 0;
+
 public:
     Engine(SDL_Renderer* rend)
     :isRunning(false)
@@ -41,11 +46,17 @@ public:
 
     void addEnemy(Position position);
 
-    void addTower(Position position);
+    void addTower(Position position, enum towers type);
 
     void engineStep();
 
     Directions findNextStep(Enemy enemy);
+
+    void waveStep();
+
+    void generateWave();
+
+    void addEnemyFromWave();
 };
 
 #endif //TOWER_DEFENCE_GAME_ENGINE_H

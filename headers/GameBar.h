@@ -7,7 +7,7 @@
 
 #include "MapObject.h"
 #include "Common.h"
-
+#include "GameBarObject.h"
 #include <vector>
 #include <SDL.h>
 
@@ -15,8 +15,8 @@ class GameBar{
 private:
     int money;
     bool isRunning;
-    MapObject *selected;
-    std::vector<MapObject> barObjects;
+    GameBarObject *selected;
+    std::vector<GameBarObject> barObjects;
     SDL_Renderer* rend;
 
 public:
@@ -25,20 +25,24 @@ public:
     ,isRunning(false)
     ,selected(nullptr)
     ,rend(rend){
-        addObject(MAP_WIDTH, 0, IMG_Load("../images/tower.png"));
+        addTower(MAP_WIDTH, 0, IMG_Load("../images/tower.png"), towers::small);
+        addTower(MAP_WIDTH, 150, IMG_Load("../images/tower2.png"), towers::big);
+        addObject(MAP_WIDTH, 300, IMG_Load("../images/start.png"), true);
     }
 
-    void addObject(int x, int y, SDL_Surface* surface);
+    void addObject(int x, int y, SDL_Surface* surface, bool isStart);
+
+    void addTower(int x, int y, SDL_Surface* surface, enum towers type);
 
     void render();
 
-    MapObject * clickLeftBar(SDL_Event event, Position clickPosition);
+    GameBarObject * clickLeftBar(SDL_Event event, Position clickPosition);
 
-    MapObject * clickRight(SDL_Event event);
+    GameBarObject * clickRight(SDL_Event event);
 
-    MapObject * click(SDL_Event event);
+    GameBarObject * click(SDL_Event event);
 
-    bool isSelected();
+    GameBarObject* isTowerSelected();
 
 };
 

@@ -40,6 +40,10 @@ public:
     bool isTargetRectangle(Position start, Position end) const{
         return posX >= start.x() && posX <= end.x() && posY >= start.y() && posY<=end.y();
     }
+
+    bool operator <( const Position & rightPos );
+
+    bool operator >( const Position & rightPos );
 };
 
 #endif //TOWER_DEFENCE_GAME_POSITION_H

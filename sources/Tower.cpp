@@ -16,5 +16,10 @@ void Tower::render() {
 
 int Tower::getForceAndShoot() {
     canShoot = false;
+    int force = 0;
+    switch (towerBulletType) {
+        case bullets::arrow: force = ARROW_FORCE; break;
+        case bullets::ball: force = BULLET_BALL_FORCE; break;
+    }
     return force;
 }

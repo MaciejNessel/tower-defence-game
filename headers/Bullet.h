@@ -15,10 +15,10 @@ private:
     int speed;
 
 public:
-    Bullet(SDL_Renderer* rend, int x, int y)
-            :force(BULLET_BALL_FORCE)
-            ,MapObject(x, y, rend, IMG_Load("../images/bullet.png"))
-            ,speed(BULLET_BALL_SPEED){
+    Bullet(SDL_Renderer* rend, int x, int y, int force, int speed, char* img_src)
+            :MapObject(x, y, rend, IMG_Load(img_src))
+            ,force(force)
+            ,speed(speed){
     }
 
     ~Bullet() = default;
@@ -28,7 +28,6 @@ public:
     int getForce() const{
         return force;
     }
-
 };
 
 

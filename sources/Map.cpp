@@ -1,9 +1,8 @@
 //
-// Created by Maciej on 26.05.2022.
+// Created by Maciej on 27.05.2022.
 //
 
 #include "../headers/Map.h"
-#include "../headers/Common.h"
 
 void Map::loadBackgroundTextures() {
     for (int i=0; i<height; i++){
@@ -82,13 +81,57 @@ void Map::addRoad(Position position) {
     mapBackground.push_back(road);
 }
 
-void Map::mapRender(Position selectedPosition) {
+Position Map::generateCenterPosition(Position position) {
+    Position insertOn = Position(floor(position.x()/BLOCK_BACKGROUND_SIZE)*BLOCK_BACKGROUND_SIZE, floor(position.y()/BLOCK_BACKGROUND_SIZE)*BLOCK_BACKGROUND_SIZE);
+    return insertOn;
+}
+
+void Map::renderSelectedTowerOnMap(Position selectedPosition, GameBarObject* selectedTower) {
+    if(selectedPosition<start || Position(height*BLOCK_BACKGROUND_SIZE, width*BLOCK_BACKGROUND_SIZE)<selectedPosition){
+        return;
+    }
+    int range = 0;
+    SDL_Surface *towerSurface = (SDL_Surface*) calloc(sizeof (SDL_Surface*), 1);
+    switch (selectedTower->getTowerType()) {
+        case towers::small:
+            towerSurface = IMG_Load("../images/tower.png");
+            range = SMALL_TOWER_RANGE;
+            break;
+        case towers::big:
+            towerSurface = IMG_Load("../images/tower2.png");
+            range = BIG_TOWER_RANGE;
+            break;
+        default: return;
+    }
+    Position insertOn = generateCenterPosition(selectedPosition);
+
+    MapObject tower = MapObject(insertOn.x(), insertOn.y(), rend, towerSurface);
+    SDL_Circle::Draw(rend, insertOn.x()+50, insertOn.y()+50, range);
+    SDL_QueryTexture(tower.tex, NULL, NULL, &tower.getDest()->w, &tower.getDest()->h);
+    tower.render();
+}
+
+void Map::mapRender(Position selectedPosition, GameBarObject* selectedTower) {
     for(int i=0; i<mapBackground.size(); i++){
         mapBackground.at(i).render();
     }
-    MapObject ok = MapObject(selectedPosition.x(), selectedPosition.y(), rend, IMG_Load("../images/ok.png"));
-    SDL_QueryTexture(ok.tex, NULL, NULL, &ok.getDest()->w, &ok.getDest()->h);
-    ok.render();
+    renderSelectedTowerOnMap(selectedPosition, selectedTower);
+}
+
+Position Map::getStart() {
+    return this->start;
+}
+
+Position Map::getEnd() {
+    return this->end;
+}
+
+int **Map::getMap() const {
+    return this->map;
+}
+
+bool Map::canMove(Position position) const {
+    return map[position.x()][position.y()];
 }
 
 bool Map::isEnd(Position position) {
@@ -106,4 +149,8 @@ Directions Map::nextEnemyStep(Position position) {
         case 'W': result = Directions::W; break;
     }
     return result;
+}
+
+Position Map::generateTowerPosition(Position mousePosition) {
+    return generateCenterPosition(mousePosition);
 }

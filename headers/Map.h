@@ -11,8 +11,10 @@
 #include "Position.h"
 #include <iostream>
 #include <fstream>
-#include "Common.h"
 #include <string>
+#include "Common.h"
+#include "GameBarObject.h"
+#include "SDL_Circle.h"
 
 class Map{
 private:
@@ -54,26 +56,25 @@ public:
 
     void addRoad(Position position);
 
-    void mapRender(Position selectedPosition);
+    Position generateCenterPosition(Position position);
 
-    Position getStart(){
-        return this->start;
-    }
+    void renderSelectedTowerOnMap(Position selectedPosition, GameBarObject* selectedTower);
 
-    Position getEnd(){
-        return this->end;
-    }
+    void mapRender(Position selectedPosition, GameBarObject* selectedTower);
 
-    int **getMap() const{
-        return this->map;
-    }
+    Position getStart();
 
-    bool canMove(Position position) const{
-        return map[position.x()][position.y()];
-    }
+    Position getEnd();
+
+    int **getMap() const;
+
+    bool canMove(Position position) const;
 
     bool isEnd(Position position);
 
     Directions nextEnemyStep(Position position);
+
+    Position generateTowerPosition(Position mousePosition);
+
 };
 #endif //TOWER_DEFENCE_GAME_MAP_H

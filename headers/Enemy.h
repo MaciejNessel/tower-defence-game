@@ -8,7 +8,7 @@
 #include "MapObject.h"
 #include <vector>
 #include "Bullet.h"
-
+#include "Common.h"
 
 class Enemy: public MapObject{
 private:
@@ -31,7 +31,7 @@ public:
     void dealVirtualDamage(int force) {
         virtualHp -= force;
     }
-    void addBullet(Position position);
+    void addBullet(Position position, enum bullets bulletType);
     void rendBullets();
     void render();
     void renderLife();
