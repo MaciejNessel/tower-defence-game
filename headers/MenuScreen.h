@@ -44,7 +44,7 @@ public:
     }
 
     void clearChoice(){
-        lvlName = "";
+        lvlName = nullptr;
         isSelectedLevel = false;
     }
 

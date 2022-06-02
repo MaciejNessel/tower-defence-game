@@ -10,9 +10,10 @@ void LevelEngine::start() {
     GameBarObject *result = nullptr;
 
     while (isRunning){
-        if(waveEngine.getEndStatus()){
+        if(!isEnd && waveEngine.getEndStatus()){
             victoryScreen();
         }
+
         timer ++;
         SDL_Event event;
         GameBarObject *result = nullptr;
@@ -52,9 +53,10 @@ void LevelEngine::start() {
             gameStatus_ = gameStatus::menu;
             return;
         }
+
         this->engineStep();
 
-        if(waveEngine.waveStep(map, &coins) == gameStatus::defeat){
+        if(!isEnd && waveEngine.waveStep(map, &coins) == gameStatus::defeat){
             gameStatus_ = gameStatus::defeat;
             defeatScreen();
         }
@@ -69,7 +71,6 @@ void LevelEngine::start() {
 
 
     }
-
     gameStatus_ = gameStatus::win;
 }
 
@@ -125,12 +126,14 @@ void LevelEngine::generateWave() {
 }
 
 void LevelEngine::defeatScreen() {
+    isEnd = true;
     MapObject defeat = MapObject(MAP_WIDTH/3, MAP_HEIGHT/3, rend, IMG_Load("../images/defeat.png"));
     SDL_QueryTexture(defeat.tex, NULL, NULL, &defeat.getDest()->w, &defeat.getDest()->h);
     objects.push_back(defeat);
 }
 
 void LevelEngine::victoryScreen() {
+    isEnd = true;
     MapObject victory = MapObject(MAP_WIDTH/3, MAP_HEIGHT/3, rend, IMG_Load("../images/victory.png"));
     SDL_QueryTexture(victory.tex, NULL, NULL, &victory.getDest()->w, &victory.getDest()->h);
     objects.push_back(victory);

@@ -23,7 +23,7 @@ class Engine{
 private:
     bool isRunning;
     SDL_Renderer* rend;
-    LevelEngine *levelEngine = (LevelEngine*) calloc(sizeof (LevelEngine), 10);
+    gameStatus *gs = new gameStatus;
 
 public:
     Engine(SDL_Renderer* rend)
@@ -32,7 +32,6 @@ public:
     }
 
     void start();
-
 };
 
 #endif //TOWER_DEFENCE_GAME_ENGINE_H

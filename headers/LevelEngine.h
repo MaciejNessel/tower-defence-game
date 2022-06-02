@@ -35,6 +35,7 @@ private:
     WaveEngine waveEngine;
     CoinLabel coinLabel;
     int coins = 100;
+    bool isEnd = false;
 
 public:
     LevelEngine(SDL_Renderer* rend, char* levelName)
@@ -45,11 +46,13 @@ public:
     ,coinLabel(CoinLabel(0, 0, 0, rend))
     {
     }
-
+    ~LevelEngine(){
+        towerList.clear();
+        objects.clear();
+    }
     void start();
 
-
-    void addTower(Position position, enum towers type);;
+    void addTower(Position position, enum towers type);
 
     void engineStep();
 

@@ -8,6 +8,7 @@
 #include "Directions.h"
 #include "Position.h"
 #include <SDL_image.h>
+#include <iostream>
 
 class MapObject{
 protected:
@@ -31,6 +32,9 @@ public:
         dest.y = y;
         this->tex = SDL_CreateTextureFromSurface(rend, surface);
         SDL_FreeSurface(surface);
+    }
+
+    ~MapObject(){
     }
 
 
@@ -60,6 +64,7 @@ public:
     bool isRoad(){
         return isRoad_;
     }
+
 };
 
 #endif //TOWER_DEFENCE_GAME_MAPOBJECT_H

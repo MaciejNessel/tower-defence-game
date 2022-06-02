@@ -24,6 +24,9 @@ public:
     }
 
     bool checkAlive() const{
+        if(hp<0){
+            SDL_DestroyTexture(tex);
+        }
         return hp>0;
     }
     bool dealDamage(int force);

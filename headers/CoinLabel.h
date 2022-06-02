@@ -26,27 +26,36 @@ public:
     }
 
     void render(){
-        MapObject coin = MapObject(x, y, rend, IMG_Load("../images/coin.png"));
-        SDL_QueryTexture(coin.tex, NULL, NULL, &coin.getDest()->w, &coin.getDest()->h);
-        coin.render();
+        MapObject *coin = new MapObject(x, y, rend, IMG_Load("../images/coin.png"));
+        SDL_QueryTexture(coin->tex, NULL, NULL, &coin->getDest()->w, &coin->getDest()->h);
+        coin->render();
+        SDL_DestroyTexture(coin->tex);
+        delete coin;
+        coin = NULL;
 
         TTF_Font* Arial;
         TTF_Init();
         Arial = TTF_OpenFont("../assets/arial.ttf", 24);
+
         if(!Arial) {
             return;
         }
-        SDL_Color White = {255, 255, 255};
 
         std::stringstream ss;
         ss << countNum;
         std::string a;
         ss >> a;
 
-        MapObject count = MapObject(x+25, y+0, rend, TTF_RenderText_Solid(Arial, a.c_str(), White));
-        SDL_QueryTexture(count.tex, NULL, NULL, &count.getDest()->w, &count.getDest()->h);
+        SDL_Surface* surface = TTF_RenderText_Solid(Arial, a.c_str(), {255, 255, 255});
+        MapObject* count = new MapObject(x+25, y+0, rend, surface);
+        SDL_QueryTexture(count->tex, NULL, NULL, &count->getDest()->w, &count->getDest()->h);
+        count->render();
+        SDL_DestroyTexture(count->tex);
 
-        count.render();
+        delete count;
+
+        TTF_CloseFont(Arial);
+        TTF_Quit();
     }
 
     void updateCount(int num){
