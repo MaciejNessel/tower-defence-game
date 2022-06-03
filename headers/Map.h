@@ -47,7 +47,11 @@ public:
         loadLevel();
         loadBackgroundTextures();
     }
-
+    void destroy(){
+        for(int i=0; i<mapBackground.size(); i++){
+            SDL_DestroyTexture(mapBackground.at(i).tex);
+        }
+    }
     void loadBackgroundTextures();
 
     std::vector<std::string> splitBySpace(std::string line);

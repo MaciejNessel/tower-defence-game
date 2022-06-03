@@ -49,6 +49,7 @@ public:
 
     GameBarObject* isTowerSelected();
 
+    void destroy();
 };
 
 #endif //TOWER_DEFENCE_GAME_GAMEBAR_H

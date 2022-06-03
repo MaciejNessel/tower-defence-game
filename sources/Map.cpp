@@ -109,6 +109,7 @@ void Map::renderSelectedTowerOnMap(Position selectedPosition, GameBarObject* sel
     SDL_Circle::Draw(rend, insertOn.x()+50, insertOn.y()+50, range);
     SDL_QueryTexture(tower.tex, NULL, NULL, &tower.getDest()->w, &tower.getDest()->h);
     tower.render();
+    tower.destroy();
 }
 
 void Map::mapRender(Position selectedPosition, GameBarObject* selectedTower) {

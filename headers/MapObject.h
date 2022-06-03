@@ -64,7 +64,9 @@ public:
     bool isRoad(){
         return isRoad_;
     }
-
+    void destroy(){
+        SDL_DestroyTexture(tex);
+    }
 };
 
 #endif //TOWER_DEFENCE_GAME_MAPOBJECT_H

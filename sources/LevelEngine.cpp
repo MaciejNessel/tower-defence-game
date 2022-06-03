@@ -68,9 +68,8 @@ void LevelEngine::start() {
         SDL_RenderPresent(rend);
 
         SDL_Delay(1000 / 60);
-
-
     }
+
     gameStatus_ = gameStatus::win;
 }
 

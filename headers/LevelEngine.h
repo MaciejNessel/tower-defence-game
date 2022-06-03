@@ -46,10 +46,20 @@ public:
     ,coinLabel(CoinLabel(0, 0, 0, rend))
     {
     }
+
     ~LevelEngine(){
-        towerList.clear();
-        objects.clear();
+        for(int i=0; i<towerList.size(); i++){
+            towerList.at(i).destroy();
+        }
+        for(int i=0; i<objects.size(); i++){
+            objects.at(i).destroy();
+        }
+        map.destroy();
+        gameBar.destroy();
+        coinLabel.destroy();
+        waveEngine.destroy();
     }
+
     void start();
 
     void addTower(Position position, enum towers type);

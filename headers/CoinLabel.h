@@ -62,6 +62,9 @@ public:
         countNum = num;
     }
 
+    void destroy() {
+        SDL_DestroyTexture(tex);
+    }
 };
 
 #endif //TOWER_DEFENCE_GAME_COINLABEL_H

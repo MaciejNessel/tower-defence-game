@@ -29,10 +29,10 @@ void Engine::start() {
         if(*gs == gameStatus::defeat){
             isRunning = false;
         }
-        if(*gs == gameStatus::win){
+        else if(*gs == gameStatus::win){
             isRunning = false;
         }
-        if(*gs == gameStatus::menu){
+        else if(*gs == gameStatus::menu){
             break;
         }
     }
@@ -40,6 +40,4 @@ void Engine::start() {
     if(*gs == gameStatus::menu){
         start();
     }
-
-
 }

@@ -81,3 +81,11 @@ GameBarObject *GameBar::click(SDL_Event event) {
 GameBarObject* GameBar::isTowerSelected() {
     return selected;
 }
+
+void GameBar::destroy() {
+    backButton.destroy();
+    for(int i=0; i<barObjects.size(); i++){
+        barObjects.at(i).destroy();
+    }
+    free(selected);
+}

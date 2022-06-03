@@ -58,6 +58,8 @@ public:
     bool getEndStatus(){
         return currentWave >= waves.size() && noEnemies == 0 && enemyList.size() == 0;
     }
+
+    void destroy();
 };
 
 #endif //TOWER_DEFENCE_GAME_WAVEENGINE_H

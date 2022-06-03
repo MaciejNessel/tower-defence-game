@@ -28,6 +28,15 @@ public:
         addLevel(450, 240, IMG_Load("../images/lvl2.png"), (char*) "../resources/lvl2.txt");
     }
 
+    ~MenuScreen(){
+        logo.destroy();
+        for(int i=0; i<objects.size(); i++){
+            objects.at(i).destroy();
+        }
+        objects.clear();
+        free(lvlName);
+    }
+
     void step();
 
     void addLevel(int x, int y, SDL_Surface* surface, char* name);

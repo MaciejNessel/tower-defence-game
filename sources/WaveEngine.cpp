@@ -104,3 +104,10 @@ void WaveEngine::addEnemyFromWave() {
     addEnemy(startPosition);
     noEnemies--;
 }
+
+void WaveEngine::destroy() {
+    waves.clear();
+    for(int i=0; i<enemyList.size(); i++){
+        enemyList.at(i).destroy();
+    }
+}
