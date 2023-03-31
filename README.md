@@ -17,8 +17,3 @@ Do realizacji projektu wykorzystano bibliotekę SDL.
 * tworzenie fali minionów 'START WAVE', na podstawie odpowiedniego pliku `lvlX_wave.txt`
 * zarządzanie złotem (pozyskiwanie za miniony / wydawanie na wieże)
 * ekran zwycięstwa / porażki
-
-
-
-## Widoki
-![Alt text](img.png)
